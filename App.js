@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import * as Font from "expo-font";
-import { StyleSheet, Text, View } from "react-native";
-import Home from "./screens/home";
+import { Text, View } from "react-native";
 import { AppLoading } from "expo";
+import { AppNavigator } from "./routes/AppNavigator";
 
 const getFonts = () => {
   return Font.loadAsync({
@@ -15,12 +15,10 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
-    return <Home />;
+    return <AppNavigator />;
   } else {
     return (
       <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
     );
   }
 }
-
-const styles = StyleSheet.create({});
