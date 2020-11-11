@@ -1,42 +1,23 @@
 import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Header from "../shared/header";
 import HomeStack from "./homeStack";
 import AboutStack from "./aboutStack";
+import globalStyles from "../styles/global";
 
-const { Navigator, Screen } = createDrawerNavigator();
+const { Navigator, Screen } = createBottomTabNavigator();
 
 export const RootDrawerNavigator = ({ navigation }) => (
   <Navigator
-    initialRouteName="Home"
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: "#eee",
-      },
-      headerTintColor: "#444",
-      headerTitleStyle: {
-        fontWeight: "bold",
-      },
-      headerTitleAlign: "center",
+    tabBarOptions={{
+      tabStyle: { justifyContent: "center" },
+      labelStyle: { fontSize: 15 },
+      activeTintColor: "red",
     }}
   >
-    <Screen
-      name="Home"
-      component={HomeStack}
-      options={{
-        headerTitle: () => <Header navigation={navigation} title="GameZone" />,
-      }}
-    />
-    <Screen
-      name="About"
-      component={AboutStack}
-      options={{
-        headerTitle: () => (
-          <Header navigation={navigation} title="About GameZone" />
-        ),
-      }}
-    />
+    <Screen name="Home" component={HomeStack} options={{ tabBarBadge: 3 }} />
+    <Screen name="About" component={AboutStack} />
   </Navigator>
 );
 
