@@ -6,9 +6,12 @@ import {
   FlatList,
   TouchableOpacity,
   Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import Card from "../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
+import ReviwForm from "./reviewForm";
 import globalStyles from "../styles/global";
 
 const Home = (props) => {
@@ -35,20 +38,30 @@ const Home = (props) => {
       key: "3",
     },
   ]);
+
+  const addReview = (review) => {
+    review.key = Math.random().toString();
+    setReviews([review, ...reviews]);
+    setModalOpen(false);
+  };
+
   return (
     <View style={globalStyles.container}>
       <Modal visible={modalOpen} animationType="slide">
-        <MaterialIcons
-          name="close"
-          size={24}
-          style={{ ...styles.modalToggle, ...styles.modalClose }}
-          onPress={() => {
-            setModalOpen(false);
-          }}
-        />
-        <View style={styles.modalContent}>
-          <Text>Hello from the modal</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => {
+                setModalOpen(false);
+              }}
+            />
+
+            <ReviwForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       <MaterialIcons

@@ -13,7 +13,7 @@ export const RootDrawerNavigator = ({ navigation }) => (
     tabBarOptions={{
       tabStyle: { justifyContent: "center" },
       labelStyle: { fontSize: 15 },
-      activeTintColor: "red",
+      activeTintColor: "maroon",
     }}
   >
     <Screen name="Home" component={HomeStack} options={{ tabBarBadge: 3 }} />
